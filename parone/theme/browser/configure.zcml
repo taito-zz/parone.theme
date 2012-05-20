@@ -1,0 +1,50 @@
+<!-- configure.zcml for browser directory of parone.theme -->
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="parone.theme">
+
+    <interface
+        interface=".interfaces.IThemeSpecific"
+        type="zope.publisher.interfaces.browser.IBrowserSkinType"
+        name="Parone Theme"
+        />
+
+     <browser:viewlet
+         name="parone.info"
+         manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+         layer=".interfaces.IThemeSpecific"
+         class=".selector.LanguageSelector"
+         permission="zope2.View"
+         />
+
+    <!-- Resource directory for stylesheets -->
+    <browser:resourceDirectory
+        name="parone.theme.stylesheets"
+        directory="stylesheets"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+    <!-- Resource directory for javascript -->
+    <browser:resourceDirectory
+        name="parone.theme.javascripts"
+        directory="javascripts"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+    <!-- Resource directory for images -->
+    <browser:resourceDirectory
+        name="parone.theme.images"
+        directory="images"
+        layer=".interfaces.IThemeSpecific"
+        />
+
+  <!-- Pages -->
+  <browser:page
+    name="folder-view-with-one-pic"
+    for="Products.CMFCore.interfaces.ISiteRoot"
+    class=".folder.FolderViewWithOnePicView"
+    permission="zope2.View"
+    />
+
+</configure>

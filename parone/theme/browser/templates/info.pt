@@ -1,0 +1,55 @@
+<!-- parone info template -->
+<table id="info" i18n:domain="parone">
+  <tr>
+    <td>
+      <!-- Start of Language Selection -->
+      <tal:language tal:define="available view/available;
+                                 languages view/languages;
+                                 showFlags view/showFlags;">
+      <ul id="portal-languageselector"
+             tal:condition="python:available and len(languages)>=2">
+        <tal:language repeat="lang languages">
+          <li tal:define="code lang/code;
+                          selected lang/selected"
+              tal:attributes="class python: selected and 'currentLanguage' or '';">
+            <a href=""
+               tal:define="flag lang/flag|nothing;
+                            name lang/name"
+               tal:attributes="href lang/url;
+                               title name">
+            <tal:flag condition="python:showFlags and flag">
+            <img
+                 width="14"
+                 height="11"
+                 alt=""
+                 tal:attributes="src string:${view/portal_url}${flag};
+                                 title python: name;
+                                 class python: selected and 'currentItem' or '';" />
+            </tal:flag>
+            <tal:nonflag condition="python:not showFlags or not flag"
+                         replace="name">language name</tal:nonflag>
+            </a>&nbsp;
+          </li>
+
+        </tal:language>
+
+    </ul>
+</tal:language>
+
+			</td>
+			<td>
+<ul id="info">
+<li><span i18n:translate="tel">
+Tel</span>. +358 (0)9 2781 507
+</li>
+<li>
+Gsm. +358 (0)40 5551 946
+</li>
+<li>
+<a href="mailto:info@paronedesign.com">info@paronedesign.com</a>
+</li>
+</ul> 
+
+			</td>
+		</tr>
+</table>

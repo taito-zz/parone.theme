@@ -1,0 +1,145 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+    <div metal:fill-slot="main">
+    <metal:main-macro define-macro="main"
+                      tal:define="kssClassesView context/@@kss_field_decorator_view;
+                                  getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                                  templateId template/getId">
+<!--
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 metal:use-macro="here/kss_generic_macros/macros/generic_title_view">
+            Title or id
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p metal:use-macro="here/kss_generic_macros/macros/generic_description_view">
+            Description
+        </p>
+-->
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+       <table tal:define="Image01 python:here.portal_catalog(Title='pic01', path=dict(query='/'.join(here.getPhysicalPath()), depth=1),);
+       					  Image02 python:here.portal_catalog(Title='pic02', path=dict(query='/'.join(here.getPhysicalPath()), depth=1),);
+       					  Image03 python:here.portal_catalog(Title='pic03', path=dict(query='/'.join(here.getPhysicalPath()), depth=1),);
+       					  Image04 python:here.portal_catalog(Title='pic04', path=dict(query='/'.join(here.getPhysicalPath()), depth=1),);
+       					  Image05 python:here.portal_catalog(Title='pic05', path=dict(query='/'.join(here.getPhysicalPath()), depth=1),);
+       					  Image06 python:here.portal_catalog(Title='pic06', path=dict(query='/'.join(here.getPhysicalPath()), depth=1),)">
+		<tr>		
+		<td class="table_left">
+
+<div tal:define="DocumentText python:here.portal_catalog(Title='teksti', path=dict(query='/'.join(here.getPhysicalPath()), depth=1),)" tal:omit-tag="">
+
+				<div tal:repeat="DT DocumentText" tal:omit-tag="">
+				<div tal:define="dt DT/getObject" tal:omit-tag="">
+
+				<div tal:replace="structure dt/getText"  tal:omit-tag=""/>	
+
+				</div>
+				</div>
+				</div>
+		</td>
+		
+		<td>
+		<table class="image_table"><tr><td class="image_table" tal:repeat="image Image01">
+			<span tal:define="pic image/getObject">
+			    <a tal:attributes="href pic/absolute_url;
+			    title string:${pic/Description}" id="thumb1" 
+			    class="highslide" onclick="return hs.expand(this, {captionId: 'caption1'})">
+				<img alt="" src="#" tal:replace="structure python:pic.tag(width=100,height=200)" />
+				</a>
+<!-- Let's use tal:repeat expression -->
+					<span class='highslide-caption' id='caption1'
+		tal:content="pic/Description" />
+<!-- -->
+			</span>
+
+			
+			
+			
+		</td>
+		<td tal:repeat="image Image03">
+			<span tal:define="pic image/getObject">
+			    <a tal:attributes="href pic/absolute_url;
+			    title string:${pic/Description}" id="thumb1" 
+			    class="highslide" onclick="return hs.expand(this, {captionId: 'caption3'})">
+				<img alt="" src="#" tal:replace="structure python:pic.tag(width=100,height=200)" />
+				</a>
+					<span class='highslide-caption' id='caption3'
+		tal:content="pic/Description" />
+
+
+			</span>
+		</td>
+		<td tal:repeat="image Image05">
+			<span tal:define="pic image/getObject">
+			    <a tal:attributes="href pic/absolute_url;
+			    title string:${pic/Description}" id="thumb1" 
+			    class="highslide" onclick="return hs.expand(this, {captionId: 'caption5'})">
+				<img alt="" src="#" tal:replace="structure python:pic.tag(width=100,height=200)" />
+				</a>
+					<span class='highslide-caption' id='caption5'
+		tal:content="pic/Description" />				
+			</span>
+		</td>
+		</tr>
+		<tr>
+		<td tal:repeat="image Image02">
+			<span tal:define="pic image/getObject">
+			    <a tal:attributes="href pic/absolute_url;
+			    title string:${pic/Description}" id="thumb1" 
+			    class="highslide" onclick="return hs.expand(this, {captionId: 'caption2'})">
+				<img alt="" src="#" tal:replace="structure python:pic.tag(width=100,height=200)" />
+				</a>
+					<span class='highslide-caption' id='caption2'
+		tal:content="pic/Description" />				
+			</span>
+		</td>
+		<td tal:repeat="image Image04">
+			<span tal:define="pic image/getObject">
+			    <a tal:attributes="href pic/absolute_url;
+			    title string:${pic/Description}" id="thumb1" 
+			    class="highslide" onclick="return hs.expand(this, {captionId: 'caption4'})">
+				<img alt="" src="#" tal:replace="structure python:pic.tag(width=100,height=200)" />
+				</a>
+					<span class='highslide-caption' id='caption4'
+		tal:content="pic/Description" />				
+			</span>
+		</td>
+		<td tal:repeat="image Image06">
+			<span tal:define="pic image/getObject">
+			    <a tal:attributes="href pic/absolute_url;
+			    title string:${pic/Description}" id="thumb1" 
+			    class="highslide" onclick="return hs.expand(this, {captionId: 'caption6'})">
+				<img alt="" src="#" tal:replace="structure python:pic.tag(width=100,height=200)" />
+				</a>
+					<span class='highslide-caption' id='caption6'
+		tal:content="pic/Description" />				
+			</span>
+		</td>		
+		</tr>
+		</table>
+		
+		</td>
+
+		</table>
+
+
+    	
+        
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </metal:main-macro>
+    </div>
+
+</body>
+</html>

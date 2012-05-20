@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+  <body>
+    <div metal:fill-slot="main">
+      <div tal:replace="structure provider:plone.abovecontentbody" />
+      <table>
+        <tbody>
+          <tr>
+            <td class="table_left">
+              <div tal:replace="structure view/text | nothing" />
+            </td>
+            <td>
+              <img tal:replace="structure view/pic | nothing" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div tal:replace="structure provider:plone.belowcontentbody" />
+    </div>
+  </body>
+</html>

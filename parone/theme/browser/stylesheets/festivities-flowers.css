@@ -1,0 +1,14 @@
+
+#visual-portal-wrapper {
+    margin: 0;
+    padding: 0;
+    background:white url(../festivities-flowers/background.jpg) no-repeat scroll 0% 100%;
+}
+/*
+.documentContent:hover {
+    opacity:0.75;
+	filter: alpha(opacity=75);
+	-moz-opacity:0.75;
+	background-color: #fff;
+}
+*/

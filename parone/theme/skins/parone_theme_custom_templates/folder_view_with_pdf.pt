@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+    <div metal:fill-slot="main">
+    <metal:main-macro define-macro="main"
+                      tal:define="kssClassesView context/@@kss_field_decorator_view;
+                                  getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                                  templateId template/getId">
+<!--
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 metal:use-macro="here/kss_generic_macros/macros/generic_title_view">
+            Title or id
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p metal:use-macro="here/kss_generic_macros/macros/generic_description_view">
+            Description
+        </p>
+-->
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+
+		       <div tal:define="DocumentText python:here.portal_catalog(Title='teksti', path=dict(query='/'.join(here.getPhysicalPath()), depth=1),)" tal:omit-tag="">
+
+
+		       
+				<div tal:repeat="DT DocumentText" tal:omit-tag="">
+				<div tal:define="dt DT/getObject" tal:omit-tag="">
+
+				<div tal:replace="structure dt/getText"  tal:omit-tag=""/>	
+
+				</div>
+				</div>
+				</div>
+
+		       <dl tal:define="PDFs python:here.portal_catalog(Type='File', path=dict(query='/'.join(here.getPhysicalPath()), depth=1), sort_on='effective', sort_order='reverse')">
+		       
+		       	<div class="pdfbox" tal:repeat="pdf PDFs">
+					<dt>		       	
+		       		<img tal:replace="structure python:plone_view.getIcon(pdf).html_tag()" />
+		       
+		       		<a href="" tal:attributes="href string:${pdf/getURL};
+		       		title pdf/Description"
+		       		tal:content="pdf/Title">
+		       		</a> (<span tal:content="pdf/effective/year" />)
+		       		</dt>
+		       		<dd tal:content="pdf/Description" />
+		       	</div>
+
+
+		       </dl>
+		      
+    	
+        
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </metal:main-macro>
+    </div>
+
+</body>
+</html>
